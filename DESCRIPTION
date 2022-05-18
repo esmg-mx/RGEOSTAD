@@ -1,0 +1,16 @@
+Package: RGEOSTAD
+Type: Package
+Title: RGEOESTAD: Un programa de código abierto para aplicaciones geoestadísticas basado en R-Project.
+Version: 0.1.0
+Author@R: c(person("M. A.", "Díaz-Viera", role = "aut", email = "mdiazv64@gmail.com"),
+             person("V.", "Hernández-Maldonado", role = "aut"),
+             person("V.", "Méndez-Venegas"),
+             person("J.", "Mendoza-Torres"),
+             person("Le", "V.H.", email = "levanhuong15011989@gmail.com")
+             person("D.", "Vázquez-Ramírez", email = "daniel.geofisico89@comunidad.unam.mx"))
+Depends: Rcpp, maps, mapproj, actuar, fields, fitdistrplus, geoR, gstat, MASS, moments, poweRlaw,RFOC, spatstat, ADGofTest, reshape, sp
+Maintainer: D. Vázquez Ramírez <daniel.geofisico89@comunidad.unam.mx>
+Description: 
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
