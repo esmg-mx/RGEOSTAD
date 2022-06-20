@@ -9,8 +9,8 @@ Authors@R: c(person(given ="M. A.", family ="Díaz-Viera", role = "aut", email =
              person(given ="D.", family ="Vázquez-Ramírez",role = "cre", email = "daniel.geofisico89@comunidad.unam.mx"))
 Depends: Rcpp, maps, mapproj, actuar, fields, fitdistrplus, gstat, MASS, moments, poweRlaw,RFOC, spatstat, ADGofTest, reshape, sp
 Maintainer: D. Vázquez-Ramírez <daniel.geofisico89@comunidad.unam.mx>
-Description: What the package does (one paragraph).
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
 License: GPL (>= 2)
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+LazyData: true
