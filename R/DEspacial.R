@@ -1,9 +1,9 @@
 DEspacial <-
-function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)), MainTitle = "Distribución espacial",
+function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)), MainTitle = "",
           cex.lab = 1.8, cex.axis = 1.5, cex.main= 1.8,
           AbsFreq = TRUE,Id = FALSE, IdCol = "black",
           # col = gray.colors(64, start = 0.3, end = 0.9, gamma = 2.2),
-          Grid=NULL, breaks = NULL, TextPar=list(col="black", cex=1),
+          Grid=NULL, breaks = NULL,n_bins, TextPar=list(col="black", cex=1),
           win = NULL)
 {
   library(reshape) # for the function "sort_df"
@@ -13,7 +13,7 @@ function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)),
   DatosOrd <- sort_df(Datos, vars = "P1") # "sort_df" sorts "Datos" in ascending order for "P1"
   
   if (is.null(breaks)) {
-    nbins = 9
+    nbins = n_bins
     Xmax <- max(P1)
     Xmin <- min(P1)
     Range <- Xmax-Xmin
@@ -21,7 +21,7 @@ function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)),
   } else {
     valhist <-hist(P1,breaks = breaks,plot=F)$breaks
   }
-  nbins<-length(valhist)-1
+  nbins<- length(valhist)-1
   ########################### Getting the elements of every bin in the histogram
   # Next, "Datoi" stores the position in "DatosOrd" of the data that belongs to the bin number i
   DATO<-NULL
@@ -80,16 +80,16 @@ function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)),
   par(mar = c(5, 5, 5, 0))
   
   
-  plot.default(DatosOrd[, 1], DatosOrd[, 2], pch = 19, col = "transparent", 
+  plot.default(DatosOrd[, 1], DatosOrd[, 2], pch = 15, col = "transparent", 
                cex.lab = 1.8, cex.axis = 1.5, cex = 2, xlab = XLAB, 
-               ylab = YLAB, main = MainTitle, cex.main = 1.8) # , asp=1
+               ylab = YLAB, main = MainTitle, cex.main = 1.8, asp=1) # , asp=1
   grid(col = "lightgray", lty = "dashed", lwd = par("lwd"), equilogs = TRUE)
   par(new=TRUE)
   # Next, ploting the spatial distribution of every bin that has absolute frequency greater than one
   for (i in 1:nbins) {
     if ( get(AbsFreqVarName[i]) > 0) {
       points.default(DatosOrd[get(DATO[i]), 1], DatosOrd[get(DATO[i]), 2], 
-                     pch = 20, col = Colors[i], cex = 3)
+                     pch = 15, col = Colors[i], cex = 3)
     }
   }
   ########################## Next, plot as image the spatial distribution. Use this instead of the spatial distribution plotting above
@@ -110,7 +110,7 @@ function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)),
   #
   ############# plotting the histogram
   par(mar = c(5, 5, 1, 2))
-  hist2(DatosOrd[, 3], freq = TRUE, breaks = valhist, xlab = NameP1, ylab= "Frecuencia (conteo)",
+  hist2(DatosOrd[, 3], freq = TRUE, breaks = valhist, xlab = NameP1, ylab= "Frequency (count)",
         main = "",
         cex.lab = 0.8*cex.lab, cex.axis = 0.8*cex.axis,
         AbsFreq = AbsFreq, PercentFreq = F) # "AbsFreq" Is the absolute frequency to be plotted?
@@ -125,19 +125,19 @@ function (CoorX, CoorY, P1, XLAB="X", YLAB="Y", NameP1= deparse(substitute(P1)),
   plot.default(0, 0, type = "n", xlim = c(0, 40), ylim = c(0, 42), 
                xaxt = "n", yaxt = "n", xlab = "", ylab = "")
   if (Id){
-    text(0,40,labels = "No", cex = 1.3*TextPar$cex, font=2, pos=4)
+    text(0,40,labels = "No", cex = 1.6*TextPar$cex, font=2, pos=4)
   }
-  text(10, 40, labels = "Min", cex = 1.3*TextPar$cex, font=2)
-  text(20, 40, labels = "Bar", cex = 1.3*TextPar$cex, font=2)
-  text(30, 40, labels = "Max", cex = 1.3*TextPar$cex, font=2)
-  Pos<-seq(36,4,-4)
+  text(10, 40, labels = "Min", cex = 1.6*TextPar$cex, font=2)
+  text(20, 40, labels = "Bar", cex = 1.6*TextPar$cex, font=2)
+  text(30, 40, labels = "Max", cex = 1.6*TextPar$cex, font=2)
+  Pos<-seq(36,4,length.out =nbins)
   for (i in 1:nbins) {
     if (Id){
       text(0,Pos[i],labels = sprintf("%i:",i), pos=4, font=2, col=IdCol)
     }
-    text(10, Pos[i], labels = round(valhist[i], 3), cex = TextPar$cex, col = TextPar$col)
-    points.default(20, Pos[i],pch = 19, col = Colors[i] , bg= Colors[i], cex = 2)
-    text(30, Pos[i], labels = round(valhist[i+1], 3), cex = TextPar$cex, col = TextPar$col)
+    text(10, Pos[i], labels = round(valhist[i], 2), cex = 1.6*TextPar$cex, col = TextPar$col)
+    points.default(20, Pos[i],pch = 15, col = Colors[i] , bg= Colors[i], cex = 2)
+    text(30, Pos[i], labels = round(valhist[i+1], 2), cex = 1.6*TextPar$cex, col = TextPar$col)
   }
   #    r<-list(imageData=imageData,breaks=valhist,Data=DatosOrd)
   #    invisible(r)
