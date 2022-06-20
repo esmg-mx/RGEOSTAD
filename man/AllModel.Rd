@@ -1,7 +1,7 @@
 \name{AllModel}
 \alias{AllModel}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Ajuste automatico de modelos de variograma
+\title{Ajuste automático de modelos de variograma
 %%  ~~function to do ... ~~
 }
 \description{Esta función muestra un gráfico que mostrara el ajuste de tres tipos de modelos de variograma validos: exponencial, esférico y Gaussiano; en terminos del error de ajuste (SCE)
