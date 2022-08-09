@@ -1,0 +1,17 @@
+Package: RGeostad2D
+Type: Package
+Title: RGeostad2D
+Version: 1.0.0
+Authors@R: c(person(given ="M. A.", family ="Díaz-Viera", role = "aut", email = "mdiazv64@gmail.com"),
+             person(given ="V.", family ="Hernández-Maldonado", role = "aut"),
+             person(given ="V.", family ="Méndez-Venegas",role = "ctb"),
+             person(given ="J.", family ="Mendoza-Torres",role = "ctb"),
+             person(given = "V.H.",family ="Le", email = "levanhuong15011989@gmail.com",role = "ctb"),
+             person(given ="D.", family ="Vázquez-Ramírez",role = "cre", email = "daniel.geofisico89@comunidad.unam.mx"))
+Maintainer: D. Vázquez-Ramírez <daniel.geofisico89@comunidad.unam.mx>
+Description: Un programa de código abierto para aplicaciones geoestadísticas basado en R-Project.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp, maps, mapproj, actuar, fields, fitdistrplus, gstat, MASS, moments, poweRlaw, RFOC, spatstat, ADGofTest, reshape, sp
+RoxygenNote: 7.2.1
